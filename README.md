@@ -1,6 +1,7 @@
 # Apex Financial — Core Banking Engine & Digital Portal
 
-[![Docker Image](https://img.shields.io/badge/Docker-sudhirsm13%2Fapex--backend-blue?logo=docker)](https://hub.docker.com/r/sudhirsm13/apex-backend)
+[![Backend Docker Image](https://img.shields.io/badge/Docker%20Backend-sudhirsm13%2Fapex--backend-blue?logo=docker)](https://hub.docker.com/r/sudhirsm13/apex-backend)
+[![Frontend Docker Image](https://img.shields.io/badge/Docker%20Frontend-sudhirsm13%2Fapex--frontend-blue?logo=docker)](https://hub.docker.com/r/sudhirsm13/apex-frontend)
 [![Java 21](https://img.shields.io/badge/Java-21-orange?logo=openjdk)](https://openjdk.org/)
 [![Spring Boot 3](https://img.shields.io/badge/Spring%20Boot-3.3.6-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![React 18](https://img.shields.io/badge/React-18-blue?logo=react)](https://react.dev/)
@@ -19,7 +20,7 @@ You can launch the entire core banking engine, PostgreSQL database, and digital 
 docker compose up -d
 ```
 
-- **Digital Web Portal**: `http://localhost` (Port 80)
+- **Digital Web Portal**: `http://localhost:3000` (Port 3000)
 - **Core API Server**: `http://localhost:8080`
 - **PostgreSQL Database**: `localhost:5432`
 
@@ -62,18 +63,16 @@ docker compose up -d
 
 ---
 
-## 💻 Tech Stack
+## 💻 Tech Stack & Docker Hub Repositories
 
-| Layer | Technology / Library |
-|---|---|
-| **Language & Runtime** | Java 21 (OpenJDK) |
-| **Framework** | Spring Boot 3.3.6 |
-| **Security** | Spring Security 6, JJWT 0.12.6, BCrypt Password Hashing |
-| **Database & ORM** | PostgreSQL 16, Spring Data JPA, Hibernate 6, Flyway Migrations |
-| **Concurrency** | Java 21 Virtual Threads, Pessimistic Row Locks (`SELECT ... FOR UPDATE`) |
-| **Frontend Framework** | React 18, Vite 8 |
-| **Styling & UI** | Tailwind CSS, Lucide React Icons |
-| **Testing** | JUnit 5, Mockito, Testcontainers (PostgreSQL 16) |
+| Component | Docker Hub Repository | Technology / Library |
+|---|---|---|
+| **Backend API Container** | [`sudhirsm13/apex-backend:latest`](https://hub.docker.com/r/sudhirsm13/apex-backend) | Java 21, Spring Boot 3.3.6 |
+| **Frontend Portal Container** | [`sudhirsm13/apex-frontend:latest`](https://hub.docker.com/r/sudhirsm13/apex-frontend) | React 18, Vite 8, Nginx |
+| **Security** | — | Spring Security 6, JJWT 0.12.6, BCrypt Password Hashing |
+| **Database & ORM** | `postgres:16-alpine` | PostgreSQL 16, Spring Data JPA, Hibernate 6, Flyway Migrations |
+| **Concurrency Engine** | — | Java 21 Virtual Threads, Pessimistic Row Locks (`SELECT ... FOR UPDATE`) |
+| **Testing Suite** | — | JUnit 5, Mockito, Testcontainers (PostgreSQL 16) |
 
 ---
 
