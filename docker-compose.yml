@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: apex-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ledger_db
+      POSTGRES_USER: ledger_user
+      POSTGRES_PASSWORD: changeme_prod_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ledger_user -d ledger_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    image: sudhirsm13/apex-backend:latest
+    container_name: apex-backend
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ledger_db
+      SPRING_DATASOURCE_USERNAME: ledger_user
+      SPRING_DATASOURCE_PASSWORD: changeme_prod_password
+      LEDGER_JWT_SECRET: 8a79822e300de21714fa751d291bf9ba8eab0c20a7ce066033a39e4c3462ce3c
+      LEDGER_CORS_ALLOWED_ORIGINS: http://localhost,http://localhost:80,http://localhost:5173
+
+  frontend:
+    image: sudhirsm13/apex-frontend:latest
+    container_name: apex-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  postgres_data:
