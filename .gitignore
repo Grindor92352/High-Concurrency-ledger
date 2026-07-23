@@ -1,0 +1,22 @@
+# Build & Target
+**/target/
+**/dist/
+**/dist-ssr/
+node_modules/
+
+# Environment & Secrets
+.env
+*.env
+!.env.example
+
+# IDE & OS
+.idea/
+.vscode/
+*.class
+*.iml
+.DS_Store
+*.log
+logs/
+
+# Agent & Brain artifacts
+.gemini/

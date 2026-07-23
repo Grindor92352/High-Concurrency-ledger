@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-void text-ink font-sans antialiased;
+    /* Faint scanline texture — technical without being loud. */
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.05), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(0, 214, 143, 0.04), transparent 40%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    @apply bg-pulse/30 text-ink;
+  }
+  /* Thin, dark scrollbars everywhere — a fat default scrollbar breaks the terminal illusion instantly. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #232B35 transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #232B35;
+    border-radius: 0;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  /* Panel: modern card container with smooth rounded corners & subtle shadow */
+  .panel {
+    @apply bg-panel/90 backdrop-blur-md border border-hairline rounded-xl shadow-lg shadow-black/20 overflow-hidden;
+  }
+
+  /* Panel header label: modern clean typography */
+  .panel-label {
+    @apply font-sans font-semibold text-xs tracking-wider uppercase text-ink/90;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .glow-long {
+    text-shadow: 0 0 12px rgba(0, 214, 143, 0.4);
+  }
+  .glow-short {
+    text-shadow: 0 0 12px rgba(255, 59, 92, 0.4);
+  }
+  .glow-pulse {
+    text-shadow: 0 0 12px rgba(34, 211, 238, 0.4);
+  }
+
+  .btn-execute {
+    @apply font-sans text-xs tracking-wide font-semibold
+           px-4 py-2.5 rounded-lg bg-pulse text-void shadow-md shadow-pulse/20
+           hover:bg-pulse/90 hover:shadow-pulse/40
+           active:scale-[0.98] transition-all duration-150
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-pulse disabled:shadow-none;
+  }
+
+  .input-terminal {
+    @apply w-full bg-void/80 border border-hairline rounded-lg text-ink font-sans text-sm
+           px-3.5 py-2.5 focus:outline-none focus:border-pulse/60 focus:ring-2 focus:ring-pulse/20
+           placeholder:text-dim/60 transition-all;
+  }
+}
