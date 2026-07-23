@@ -31,7 +31,7 @@ services:
       SPRING_DATASOURCE_USERNAME: ledger_user
       SPRING_DATASOURCE_PASSWORD: changeme_prod_password
       LEDGER_JWT_SECRET: 8a79822e300de21714fa751d291bf9ba8eab0c20a7ce066033a39e4c3462ce3c
-      LEDGER_CORS_ALLOWED_ORIGINS: http://localhost,http://localhost:80,http://localhost:5173
+      LEDGER_CORS_ALLOWED_ORIGINS: http://localhost,http://localhost:80,http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000
 
   frontend:
     image: sudhirsm13/apex-frontend:latest
@@ -40,6 +40,7 @@ services:
     depends_on:
       - backend
     ports:
+      - "3000:80"
       - "80:80"
 
 volumes:
